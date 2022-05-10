@@ -1,0 +1,279 @@
+#hero {
+  height: 100vh;
+  width: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#00259eb2), to(#0150fab0)), url("../images/banner.jpg");
+  background-image: linear-gradient(#00259eb2, #0150fab0), url("../images/banner.jpg");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 5rem;
+  overflow: hidden;
+}
+
+#hero #bannerText {
+  height: 100vh;
+  position: relative;
+}
+
+#hero #bannerText #above {
+  position: absolute;
+  left: 8%;
+  top: 20%;
+}
+
+#hero #bannerText #above h1 {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 8rem;
+  color: #ffffff59;
+  margin-left: 11rem;
+}
+
+#hero #bannerText #above h2 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 5rem;
+  color: #ffffff59;
+  position: relative;
+  top: -2rem;
+}
+
+#hero #bannerText #image {
+  position: absolute;
+  right: -32%;
+  top: 13%;
+  -webkit-transform: rotate(339deg);
+          transform: rotate(339deg);
+  z-index: 99;
+}
+
+#hero #bannerText #image img {
+  width: 80%;
+}
+
+#hero #bannerText #modelInfo {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
+#hero #bannerText #modelInfo h2 {
+  font-size: 7rem;
+  color: #ffffff59;
+  font-weight: 700;
+}
+
+#hero #bannerText #modelInfo h3 {
+  font-size: 5rem;
+  color: #ffffff59;
+  margin-top: -2rem;
+  margin-left: -4rem;
+}
+
+#hero #bannerText #modelInfo h4 {
+  font-size: 3rem;
+  color: #ffffff59;
+  margin-top: -1rem;
+}
+
+@media only screen and (max-width: 599px) {
+  #hero #bannerText #above {
+    left: 5%;
+    top: 9%;
+  }
+  #hero #bannerText #above h1 {
+    font-size: 5rem;
+    margin-left: 0;
+  }
+  #hero #bannerText #above h2 {
+    font-size: 3rem;
+    top: -1rem;
+  }
+  #hero #bannerText #image {
+    top: 32%;
+    right: -16%;
+  }
+  #hero #bannerText #image img {
+    width: 80%;
+  }
+  #hero #bannerText #modelInfo h2 {
+    font-size: 5rem;
+  }
+  #hero #bannerText #modelInfo h3 {
+    font-size: 3rem;
+    margin-top: -2rem;
+    margin-left: -3rem;
+  }
+  #hero #bannerText #modelInfo h4 {
+    font-size: 2rem;
+    margin-top: -1rem;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 699px) {
+  #hero #bannerText #above {
+    left: 4%;
+    top: 13%;
+  }
+  #hero #bannerText #above h1 {
+    margin-left: 0rem;
+  }
+  #hero #bannerText #above h2 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #image {
+    right: -77%;
+    top: 33%;
+  }
+  #hero #bannerText #modelInfo h2 {
+    font-size: 7rem;
+  }
+  #hero #bannerText #modelInfo h3 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #modelInfo h4 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 800px) {
+  #hero #bannerText #above {
+    left: 4%;
+    top: 13%;
+  }
+  #hero #bannerText #above h1 {
+    margin-left: 0rem;
+  }
+  #hero #bannerText #above h2 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #image {
+    right: -76%;
+    top: 33%;
+  }
+  #hero #bannerText #modelInfo h2 {
+    font-size: 7rem;
+  }
+  #hero #bannerText #modelInfo h3 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #modelInfo h4 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 991px) {
+  #hero #bannerText #above {
+    left: 4%;
+    top: 13%;
+  }
+  #hero #bannerText #above h1 {
+    margin-left: 0rem;
+  }
+  #hero #bannerText #above h2 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #image {
+    right: -52%;
+    top: 33%;
+  }
+  #hero #bannerText #modelInfo h2 {
+    font-size: 7rem;
+  }
+  #hero #bannerText #modelInfo h3 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #modelInfo h4 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 899px) {
+  #hero #bannerText #above {
+    left: 4%;
+    top: 13%;
+  }
+  #hero #bannerText #above h1 {
+    margin-left: 0rem;
+  }
+  #hero #bannerText #above h2 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #image {
+    right: -60%;
+    top: 33%;
+  }
+  #hero #bannerText #modelInfo h2 {
+    font-size: 7rem;
+  }
+  #hero #bannerText #modelInfo h3 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #modelInfo h4 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1112px) {
+  #hero #bannerText #above {
+    left: 4%;
+    top: 13%;
+  }
+  #hero #bannerText #above h1 {
+    margin-left: 0rem;
+  }
+  #hero #bannerText #above h2 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #image {
+    right: -69%;
+    top: 8%;
+  }
+  #hero #bannerText #image img {
+    width: 50%;
+  }
+  #hero #bannerText #modelInfo h2 {
+    font-size: 7rem;
+  }
+  #hero #bannerText #modelInfo h3 {
+    font-size: 4rem;
+  }
+  #hero #bannerText #modelInfo h4 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 1113px) and (max-width: 1280px) {
+  #hero #bannerText #image {
+    right: -45%;
+    top: 10%;
+  }
+  #hero #bannerText #image img {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  #hero {
+    overflow-y: visible;
+    overflow-x: hidden;
+    height: auto;
+  }
+}
+
+#hero #heroVariantion h4 {
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+}
+
+#hero #heroVariantion h5 {
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+}
+
+#hero #heroVariantion h6 {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+}
+/*# sourceMappingURL=hero.css.map */

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,IADA,AAAA,WAAW,CACX,EAAE,CAAA;EACE,SAAS,EAAE,eAAe;EAC1B,WAAW,EAAE,cAAc;CAC9B;;AAJL,AAMI,IANA,AAAA,WAAW,CAMX,EAAE,CAAA;EACE,SAAS,EAAE,iBAAiB;EAC5B,WAAW,EAAE,cAAc;CAC9B",
+    "sources": [
+        "singleprod.scss"
+    ],
+    "names": [],
+    "file": "singleprod.css"
+}

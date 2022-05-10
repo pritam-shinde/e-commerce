@@ -1,0 +1,30 @@
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 0.5px solid #fff;
+    z-index: 999;
+
+    @media only screen and (max-width: 576px) {
+        & #header_right_icon {
+            margin-right: -5rem;
+
+            & svg[data-testid="ShoppingBagIcon"],
+            & svg[data-testid="SearchIcon"],
+            & svg[data-testid="MenuIcon"] {
+                color: #fff;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 991px) {
+        & #header_right_icon {
+            margin-right: -37%;
+        }
+
+        & svg[data-testid="MenuIcon"] {
+            color: #757575;
+        }
+    }
+}
