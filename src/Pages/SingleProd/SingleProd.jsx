@@ -6,7 +6,7 @@ import { LocalShipping, Autorenew } from "@mui/icons-material";
 import parse from 'html-react-parser';
 import './sass/singleprod.css'
 
-const SingleProd = () => {
+const SingleProd = ({onAddToCart}) => {
   const [product, setProduct] = useState()
   const [width, setWidth] = useState();
   const { permalink } = useParams();
@@ -69,7 +69,7 @@ const SingleProd = () => {
                         </Grid>
                         <Grid item={true} xs={12} sm={6}>
                           <Box>
-                            <Button variant="contained"  className="btn d-block w-100 btn-danger">ADD To Cart</Button>
+                            <Button onClick={()=>{onAddToCart(product.id, 1)}} variant="contained"  className="btn d-block w-100 btn-danger">ADD To Cart</Button>
                           </Box>
                         </Grid>
                       </Grid>

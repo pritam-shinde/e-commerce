@@ -5,7 +5,8 @@ import { commerce } from "./lib/commerce";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
+  const [cart, setCart] = useState({})
 
   const fetchProducts = () => {
     var myHeaders = new Headers();
@@ -39,13 +40,24 @@ const App = () => {
     setCategories(productsPerCategory);
   }
 
- useEffect(()=>{fetchProducts()},[]);
- useEffect(()=>{sortProductsPerCategory()})
+  const fetchCart = async () => {
+    setCart(await commerce.cart.retrieve())
+  }
+
+  const handleAddToCart = async (productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
+    setCart(item.cart)
+    console.log(cart)
+  }
+
+  useEffect(() => { fetchProducts() }, []);
+  useEffect(() => { fetchCart() }, [])
+  useEffect(() => { sortProductsPerCategory() });
 
   return (
     <>
       <Header />
-      <Routing product={products} category={categories}  />
+      <Routing product={products} category={categories} onAddToCart={handleAddToCart} />
       <Footer />
     </>
   )

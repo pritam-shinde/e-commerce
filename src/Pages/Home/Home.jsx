@@ -2,7 +2,7 @@ import { Container, Grid, Box } from "@mui/material";
 import { Hero } from "./sections/sections";
 import { SectionalHeading, ProductCard } from "../../Components/Components";
 
-const Home = ({ category }) => {
+const Home = ({ category, onAddToCart }) => {
   return (
     <>
       <main>
@@ -20,8 +20,8 @@ const Home = ({ category }) => {
                           <Grid container={true} spacing={3}>
                             {
                               item.productsData.slice(0, 4).map(item => {
-                                return <Grid item={true} xs={12} sm={6} md={4} lg={3}>
-                                  <ProductCard image={item.image.url} price={item.price.formatted_with_symbol} prodName={item.name} permalink={item.permalink} />
+                                return <Grid key={item.id} item={true} xs={12} sm={6} md={4} lg={3}>
+                                  <ProductCard id={item.id} onAddToCart={onAddToCart} image={item.image.url} price={item.price.formatted_with_symbol} prodName={item.name} permalink={item.permalink} />
                                 </Grid>
                               })
                             }

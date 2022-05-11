@@ -3,7 +3,7 @@ import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } fro
 import { ShoppingCart } from "@mui/icons-material";
 import './sass/productcard.css'
 
-const ProductCard = ({ image, prodName, price, permalink }) => {
+const ProductCard = ({ id, image, prodName, price, permalink, onAddToCart}) => {
     return (
         <>
             <Card className="shadow prodCard">
@@ -14,7 +14,7 @@ const ProductCard = ({ image, prodName, price, permalink }) => {
                         <Typography variant="h6" gutterBottom>{price}</Typography>
                     </CardContent>
                     <CardActions className="d-flex justify-content-end">
-                        <IconButton><ShoppingCart /></IconButton>
+                        <IconButton onClick={()=>{onAddToCart(id, 1)}}><ShoppingCart /></IconButton>
                     </CardActions>
                 </Link>
             </Card>
