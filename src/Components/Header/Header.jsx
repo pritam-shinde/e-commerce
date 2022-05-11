@@ -14,7 +14,7 @@ const Header = () => {
           <Box className="collapse navbar-collapse" id="menu">
             <ul className="navbar-nav">
               {
-                [{ id: 'menu-item1', text: "Mens", link: "/category/mens" }, { id: 'menu-item2', text: "Women", link: "/category/women" }, { id: 'menu-item3', text: "Mens", link: "/category/kids" }, { id: 'menu-item4', text: "New Arrival", link: "/category/new-arrival" }].map(item => {
+                [{ id: 'menu-item1', text: "Mens", link: "/category/men" }, { id: 'menu-item2', text: "Women", link: "/category/women" }, { id: 'menu-item3', text: "Kids", link: "/category/kids" }, { id: 'menu-item4', text: "New Arrival", link: "/category/new-arrival" }].map(item => {
                   return <li key={item.id} className="nav-item">
                     <NavLink className="nav-link text-white" to={item.link}>
                       {item.text}

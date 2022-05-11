@@ -1,5 +1,9 @@
-main#singleProd{
-    h1{
+#singleprod{
+img{
+    max-width: 60%;
+}
+
+    & h1{
         font-size: 2rem !important;
         font-weight: 700 !important;
     }
@@ -7,5 +11,24 @@ main#singleProd{
     h2{
         font-size: 1.5rem !important;
         font-weight: 700 !important;
+    }
+
+    h6{
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+    }
+
+    p{
+        font-size: 1rem !important;
+        line-height: 1.6;
+        letter-spacing: 0.5px;
+    }
+
+    @media only screen and (max-width: 576px){
+        &{
+            & img{
+                max-width: 100%;
+            }
+        }
     }
 }

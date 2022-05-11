@@ -1,10 +1,31 @@
-main#singleProd h1 {
+#singleprod img {
+  max-width: 60%;
+}
+
+#singleprod h1 {
   font-size: 2rem !important;
   font-weight: 700 !important;
 }
 
-main#singleProd h2 {
+#singleprod h2 {
   font-size: 1.5rem !important;
   font-weight: 700 !important;
+}
+
+#singleprod h6 {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+#singleprod p {
+  font-size: 1rem !important;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+@media only screen and (max-width: 576px) {
+  #singleprod img {
+    max-width: 100%;
+  }
 }
 /*# sourceMappingURL=singleprod.css.map */

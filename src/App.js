@@ -1,46 +1,51 @@
+import { useState, useEffect } from "react";
 import Routing from "./Routing";
 import { Header, Footer } from './Components/Components';
 import { commerce } from "./lib/commerce";
-import { useState, useEffect } from "react";
 
 const App = () => {
-  const [allProduct, setAllProducts] = useState([]);
-  const [category, setCategory] = useState([])
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([])
 
-  const fetchProduct = async () => {
-    const { data } = await commerce.products.list();
-    setAllProducts(data)
+  const fetchProducts = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("X-Authorization", process.env.REACT_APP_CHEC_PUBLIC_KEY);
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch("https://api.chec.io/v1/products?limit=1000", requestOptions)
+      .then(response => response.json())
+      .then(result => setProducts(result.data))
+      .catch(error => console.log('error', error));
   }
 
-  const fetchCategory = async() =>{
-    const {data: products} = await commerce.products.list();
-    const {data: categoriesData} = await commerce.categories.list();
+  const sortProductsPerCategory = async () => {
+    let { data } = await commerce.categories.list();
 
-    const productPerCategory = categoriesData.reduce((acc, category)=>{
+    const productsPerCategory = data.reduce((acc, category) => {
       return [
         ...acc,
         {
           ...category,
-          productsData: products.filter(product=> product.categories.find(cat=> cat.id === category.id))
+          productsData: products.filter(product => product.categories.find(cat => cat.id === category.id))
         }
       ]
     }, []);
 
-    setCategory(productPerCategory)
+    setCategories(productsPerCategory);
   }
 
-  useEffect(()=>{
-    fetchCategory()
-  })
-
-  useEffect(() => {
-    fetchProduct();
-  });
+ useEffect(()=>{fetchProducts()},[]);
+ useEffect(()=>{sortProductsPerCategory()})
 
   return (
     <>
       <Header />
-      <Routing products={allProduct} categories={category} />
+      <Routing product={products} category={categories}  />
       <Footer />
     </>
   )

@@ -1,0 +1,16 @@
+.MuiCard-root.prodCard {
+    height: 22.75rem;
+
+    & .MuiCardContent-root {
+        & h5 {
+            font-size: 1.2rem !important;
+            font-weight: 700 !important;
+        }
+
+        & h6{
+            font-size: 1rem !important;
+            font-weight: 700 !important;
+            color: red;
+        }
+    }
+}
