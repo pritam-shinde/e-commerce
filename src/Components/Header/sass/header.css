@@ -1,5 +1,6 @@
 header {
-  position: absolute;
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -25,5 +26,12 @@ header {
   header svg[data-testid="MenuIcon"] {
     color: #757575;
   }
+}
+
+header.stickyHeader {
+  background-color: #212529 !important;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  border-bottom: 0.5px solid #212529;
 }
 /*# sourceMappingURL=header.css.map */

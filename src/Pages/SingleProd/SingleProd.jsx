@@ -6,7 +6,7 @@ import { LocalShipping, Autorenew } from "@mui/icons-material";
 import parse from 'html-react-parser';
 import './sass/singleprod.css'
 
-const SingleProd = ({onAddToCart}) => {
+const SingleProd = ({ onAddToCart }) => {
   const [product, setProduct] = useState()
   const [width, setWidth] = useState();
   const { permalink } = useParams();
@@ -37,7 +37,7 @@ const SingleProd = ({onAddToCart}) => {
                       width <= 599 ? <Typography variant="h1" gutterBottom>{product ? product.name : null}</Typography> : null
                     }
                     {
-                      product ? <img src={product.image.url} alt={product.name}/> : null
+                      product ? <img src={product.image.url} alt={product.name} /> : null
                     }
                   </Grid>
                   <Grid item={true} xs={12} sm={7} md={6}>
@@ -48,19 +48,19 @@ const SingleProd = ({onAddToCart}) => {
                       product ? <Typography variant="h2" style={{ color: "red" }} gutterBottom>{product.price.formatted_with_symbol}</Typography> : null
                     }
                     <Grid container={true}>
-                     {
-                       [{id:"service-1", title:"FREE SHIPPING", icon: <LocalShipping />}, {id:"service-2", title:"FREE RETURN", icon: <Autorenew />}].map(item=>{
-                         return <Grid item={true} xs={6} >
-                           <Box className="d-flex align-items-center justify-content-center border flex-md-row flex-column py-3 my-3">
-                         {item.icon}
-                         <Typography variant="h6" className="ms-3">{item.title}</Typography>
-                       </Box>
-                         </Grid>
-                       })
-                     }
-                     {
-                       product ? <Typography variant="body">{parse(String(product.description))}</Typography> : null
-                     }
+                      {
+                        [{ id: "service-1", title: "FREE SHIPPING", icon: <LocalShipping /> }, { id: "service-2", title: "FREE RETURN", icon: <Autorenew /> }].map(item => {
+                          return <Grid key={item.id} item={true} xs={6} >
+                            <Box className="d-flex align-items-center justify-content-center border flex-md-row flex-column py-3 my-3">
+                              {item.icon}
+                              <Typography variant="h6" className="ms-3">{item.title}</Typography>
+                            </Box>
+                          </Grid>
+                        })
+                      }
+                      {
+                        product ? <Typography variant="body">{parse(String(product.description))}</Typography> : null
+                      }
                     </Grid>
                     <Box mt={3}>
                       <Grid container={true} spacing={5}>
@@ -69,7 +69,7 @@ const SingleProd = ({onAddToCart}) => {
                         </Grid>
                         <Grid item={true} xs={12} sm={6}>
                           <Box>
-                            <Button onClick={()=>{onAddToCart(product.id, 1)}} variant="contained"  className="btn d-block w-100 btn-danger">ADD To Cart</Button>
+                            <Button onClick={() => { onAddToCart(product.id, 1);  }} variant="contained" className="btn d-block w-100 btn-danger">ADD To Cart</Button>
                           </Box>
                         </Grid>
                       </Grid>

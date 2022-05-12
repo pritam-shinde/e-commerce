@@ -12,7 +12,7 @@ const Home = ({ category, onAddToCart }) => {
             <Grid item={true} xs={11} sm={11} md={10} lg={10} className="mx-auto">
               {
                 category ? category.map(item => {
-                  return <section className="mb-md-5 mb-3 mt-3">
+                  return <section key={item.id} className="mb-md-5 mb-3 mt-3">
                     <Container maxWidth="xxl">
                       <Box>
                         <SectionalHeading align="center" head={item.name} />

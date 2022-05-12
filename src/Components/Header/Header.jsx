@@ -1,15 +1,25 @@
-import { NavLink, useLocation} from "react-router-dom";
-import { Icon, Button, Box, IconButton } from "@mui/material";
+import { NavLink, useLocation } from "react-router-dom";
+import { Icon, Button, Box, IconButton, Badge } from "@mui/material";
 import { Menu, Search, ShoppingBag } from "@mui/icons-material";
 import { SiNike } from 'react-icons/si';
-import './sass/header.css'
+import { Link } from "react-router-dom";
+import './sass/header.css';
 
-const Header = () => {
-  const location = useLocation()
+const Header = ({ cart }) => {
+  const location = useLocation();
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      document.querySelector('header').classList.add('stickyHeader');
+    } else {
+      document.querySelector('header').classList.remove('stickyHeader');
+    }
+  })
+
   return (
     <>
-      <header>
-        <nav className={`navbar navbar-expand-lg navbar-dark  px-2 ${location.pathname !== "/" ? "bg-dark" : "bg-transparent" }`}>
+      <header className="fixed-top">
+        <nav className={`navbar navbar-expand-lg navbar-dark  px-2 ${location.pathname !== "/" ? "bg-dark" : "bg-transparent"}`}>
           <NavLink to="/" className="navbar-brand text-white"><Icon><SiNike /></Icon></NavLink>
           <Box className="collapse navbar-collapse" id="menu">
             <ul className="navbar-nav">
@@ -26,11 +36,8 @@ const Header = () => {
           </Box>
           <Box style={{ flexGrow: 0 }} />
           <Box id="header_right_icon">
-            {
-              [{ id: "header-icon1", icon: <Search /> }, { id: "header-icon2", icon: <ShoppingBag /> }].map(item => {
-                return <IconButton key={item.id} className="mx-md-2 mx-1">{item.icon}</IconButton>
-              })
-            }
+            <IconButton className="mx-md-2 mx-1"><Search /></IconButton>
+            <IconButton className="mx-md-2 mx-1"><Link to="/cart/"><Badge color="secondary" badgeContent={cart ? cart.line_items ? cart.line_items.length : 0 : 0}><ShoppingBag /></Badge></Link></IconButton>
           </Box>
           <Button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
             <Icon>

@@ -41,23 +41,33 @@ const App = () => {
   }
 
   const fetchCart = async () => {
-    setCart(await commerce.cart.retrieve())
+    setCart(await commerce.cart.retrieve());
   }
 
   const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-    setCart(item.cart)
-    console.log(cart)
+    setCart(await commerce.cart.add(productId, quantity));
+  }
+
+  const handleUpdateCartItemQuantity = async(productId, quantity) => {
+    setCart(await commerce.cart.update(productId, {quantity}))
+  }
+
+  const handleCartItemRemove = async (productId) => {
+    setCart(await commerce.cart.remove(productId))
+  }
+
+  const handleUpdateCartEmpty = async () => {
+    setCart(await commerce.cart.empty())
   }
 
   useEffect(() => { fetchProducts() }, []);
-  useEffect(() => { fetchCart() }, [])
+  useEffect(() => { fetchCart() },[cart])
   useEffect(() => { sortProductsPerCategory() });
 
   return (
     <>
-      <Header />
-      <Routing product={products} category={categories} onAddToCart={handleAddToCart} />
+      <Header cart={cart} />
+      <Routing product={products} category={categories} onAddToCart={handleAddToCart} cart={cart} handleUpdateCartItemQuantity={handleUpdateCartItemQuantity} handleCartItemRemove={handleCartItemRemove} handleUpdateCartEmpty={handleUpdateCartEmpty} />
       <Footer />
     </>
   )
