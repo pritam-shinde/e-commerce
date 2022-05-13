@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import { TextField, Grid } from '@mui/material';
 
-const CustomTextField = ({ name, label, required }) => {
+const CustomTextField = ({ name, label, required, rule }) => {
     const { control } = useFormContext();
     const isError = false;
     return <>
@@ -11,11 +11,7 @@ const CustomTextField = ({ name, label, required }) => {
                 as={TextField}
                 name={name}
                 control={control}
-                label={label}
-                fullWidth
-                required={required}
-                error={isError}
-                defaultValue=""
+                render={({field})=>(<TextField fullWidth label={label} {...field} {...rule} autoComplete="off" required />)}
             />
         </Grid>
     </>

@@ -6,7 +6,9 @@ import { commerce } from "./lib/commerce";
 const App = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState({});
+  const [order, setOrder] = useState({});
+  const [errormessage, setErrorMessage] = useState("");
 
   const fetchProducts = () => {
     var myHeaders = new Headers();
@@ -48,8 +50,8 @@ const App = () => {
     setCart(await commerce.cart.add(productId, quantity));
   }
 
-  const handleUpdateCartItemQuantity = async(productId, quantity) => {
-    setCart(await commerce.cart.update(productId, {quantity}))
+  const handleUpdateCartItemQuantity = async (productId, quantity) => {
+    setCart(await commerce.cart.update(productId, { quantity }))
   }
 
   const handleCartItemRemove = async (productId) => {
@@ -60,14 +62,27 @@ const App = () => {
     setCart(await commerce.cart.empty())
   }
 
+  const handlerefreshCart = async () => {
+    setCart(await commerce.cart.refresh())
+  }
+
+  const handleCheckoutCapture = async (checkoutToken, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutToken, newOrder);
+      setOrder(incomingOrder)
+    } catch (error) {
+      setErrorMessage(error)
+    }
+  }
+
   useEffect(() => { fetchProducts() }, []);
-  useEffect(() => { fetchCart() },[cart])
+  useEffect(() => { fetchCart() }, [cart])
   useEffect(() => { sortProductsPerCategory() });
 
   return (
     <>
       <Header cart={cart} />
-      <Routing product={products} category={categories} onAddToCart={handleAddToCart} cart={cart} handleUpdateCartItemQuantity={handleUpdateCartItemQuantity} handleCartItemRemove={handleCartItemRemove} handleUpdateCartEmpty={handleUpdateCartEmpty} />
+      <Routing product={products} category={categories} onAddToCart={handleAddToCart} cart={cart} handleUpdateCartItemQuantity={handleUpdateCartItemQuantity} handleCartItemRemove={handleCartItemRemove} handleUpdateCartEmpty={handleUpdateCartEmpty} handleCheckoutCapture={handleCheckoutCapture} />
       <Footer />
     </>
   )
