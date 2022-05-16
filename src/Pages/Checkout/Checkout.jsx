@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 
 const steps = ["Shipping Address", "Payment Details"];
 
-const Checkout = ({ cart, handleCheckoutCapture }) => {
+const Checkout = ({ cart, handleCheckoutCapture, order, error }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState({})
   const [shippingData, setShippingData] = useState({})
@@ -29,6 +29,7 @@ const Checkout = ({ cart, handleCheckoutCapture }) => {
   const backStep = (previousActiveStep) => (setActiveStep(previousActiveStep - 1))
 
   const next = (data) => {
+    console.log(data)
     setShippingData(data);
     nextStep(activeStep);
   }

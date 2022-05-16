@@ -67,12 +67,12 @@ const App = () => {
   }
 
   const handleCheckoutCapture = async (checkoutToken, newOrder) => {
-    try {
-      const incomingOrder = await commerce.checkout.capture(checkoutToken, newOrder);
-      setOrder(incomingOrder)
-    } catch (error) {
-      setErrorMessage(error)
-    }
+      try {
+        setOrder(await commerce.checkout.capture(checkoutToken, newOrder));
+        handlerefreshCart()
+      } catch (error) {
+        setErrorMessage(error.data.error.message)
+      }
   }
 
   useEffect(() => { fetchProducts() }, []);
@@ -82,7 +82,7 @@ const App = () => {
   return (
     <>
       <Header cart={cart} />
-      <Routing product={products} category={categories} onAddToCart={handleAddToCart} cart={cart} handleUpdateCartItemQuantity={handleUpdateCartItemQuantity} handleCartItemRemove={handleCartItemRemove} handleUpdateCartEmpty={handleUpdateCartEmpty} handleCheckoutCapture={handleCheckoutCapture} />
+      <Routing product={products} category={categories} onAddToCart={handleAddToCart} cart={cart} handleUpdateCartItemQuantity={handleUpdateCartItemQuantity} handleCartItemRemove={handleCartItemRemove} handleUpdateCartEmpty={handleUpdateCartEmpty} handleCheckoutCapture={handleCheckoutCapture} order={order} error={errormessage} />
       <Footer />
     </>
   )

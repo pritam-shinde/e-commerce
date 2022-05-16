@@ -4,7 +4,7 @@ import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js
 import { loadStripe } from '@stripe/stripe-js';
 import Review from './Review';
 
-const PaymentForm = ({ shippingData, checkoutToken, backStep, activeStep, handleCheckoutCapture,nextStep }) => {
+const PaymentForm = ({ shippingData, checkoutToken, backStep, activeStep, handleCheckoutCapture, nextStep }) => {
   const stripePromise = loadStripe('pk_test_51KyvrMSBleOnk0CVyprqPbvlsrirR3N8M5qoEZpNcQOs0q7rR4sbl3eb9xu96wOmvzqC6oGJM26JeoIVXYoUiruD00jP1Pp6Lo');
 
   const handleSubmit = async (e, elements, stripe) => {
@@ -14,12 +14,12 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, activeStep, handle
     const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
 
     if (error) {
-      console.log(error)
+      console.log('[error]', error)
     } else {
-      const { firstName, lastName, email, phone, City, address, shippingCountry, shippingOption, shippingSubdivision, zip } = shippingData;
+      const { firstName, lastName, email, phone, City, address, shippingCountry, options, shippingSubdivision, zip } = shippingData;
       const order = {
         line_items: checkoutToken.live.line_items,
-        customer: { firstName, lastName, email, phone },
+        customer: { firstname: firstName, lastname: lastName, email, phone },
         shipping: {
           type: "primary",
           street: address,
@@ -27,8 +27,17 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, activeStep, handle
           county_state: shippingSubdivision,
           postal_zip: zip,
           country: shippingCountry,
+          name: `${firstName} ${lastName}`
         },
-        fulfillment: { shipping_method: shippingOption },
+        fulfillment: { shipping_method: options[0].id },
+        billing: {
+          name: `${firstName} ${lastName}`,
+          street: address,
+          town_city: City,
+          county_state: shippingSubdivision,
+          postal_zip_code: zip,
+          country: shippingCountry
+        },
         payment: {
           gateway: "stripe",
           stripe: {
