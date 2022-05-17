@@ -5,14 +5,14 @@ import { loadStripe } from '@stripe/stripe-js';
 import Review from './Review';
 
 const PaymentForm = ({ shippingData, checkoutToken, backStep, activeStep, handleCheckoutCapture, nextStep }) => {
-  const stripePromise = loadStripe('pk_test_51KyvrMSBleOnk0CVyprqPbvlsrirR3N8M5qoEZpNcQOs0q7rR4sbl3eb9xu96wOmvzqC6oGJM26JeoIVXYoUiruD00jP1Pp6Lo');
+  const stripePromise = loadStripe('pk_test_51L0IDlSJ5WCZzt5kxahkk7cKVygLwIWnRLkJjcfAx4aLDGIowRefFYMZ6Lan5PG0BGqLzwq0BeyPuHLLvFhWmzAA00JaS6uPcG');
 
   const handleSubmit = async (e, elements, stripe) => {
     e.preventDefault()
+    console.log(elements, stripe)
     if (!elements || !stripe) return
     const cardElement = elements.getElement(CardElement);
     const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
-
     if (error) {
       console.log('[error]', error)
     } else {
@@ -46,7 +46,6 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep, activeStep, handle
         }
       }
 
-      console.log(order)
       handleCheckoutCapture(checkoutToken.id, order)
       nextStep(activeStep)
     }

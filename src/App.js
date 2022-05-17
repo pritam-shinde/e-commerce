@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Routing from "./Routing";
 import { Header, Footer } from './Components/Components';
 import { commerce } from "./lib/commerce";
+import { Error } from "@mui/icons-material";
+import { loadStripe } from '@stripe/stripe-js';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +11,7 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errormessage, setErrorMessage] = useState("");
-
+  const stripe = loadStripe('pk_test_51L0IDlSJ5WCZzt5kxahkk7cKVygLwIWnRLkJjcfAx4aLDGIowRefFYMZ6Lan5PG0BGqLzwq0BeyPuHLLvFhWmzAA00JaS6uPcG');
   const fetchProducts = () => {
     var myHeaders = new Headers();
     myHeaders.append("X-Authorization", process.env.REACT_APP_CHEC_PUBLIC_KEY);
@@ -67,13 +69,15 @@ const App = () => {
   }
 
   const handleCheckoutCapture = async (checkoutToken, newOrder) => {
-      try {
-        setOrder(await commerce.checkout.capture(checkoutToken, newOrder));
-        handlerefreshCart()
-      } catch (error) {
-        setErrorMessage(error.data.error.message)
-      }
+    try {
+      setOrder(await commerce.checkout.capture(checkoutToken, {...newOrder}));
+      handlerefreshCart()
+    } catch (error) {
+        setErrorMessage(error.data.error.message);
+    }
   }
+
+  console.log(`order`, order)
 
   useEffect(() => { fetchProducts() }, []);
   useEffect(() => { fetchCart() }, [cart])
